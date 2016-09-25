@@ -1,7 +1,7 @@
 {
   "name": "babel-browserify-nyc-tape-zuul-isomorphic-demo",
   "version": "1.0.0",
-  "description": "",
+  "description": "A test stack with code coverage for isomorphic JavaScript development using babel, browserify, nyc, tape, and zuul.",
   "private": true,
   "main": "index.js",
   "keywords": [],
@@ -28,7 +28,7 @@
   },
   "scripts": {
     "build": "browserify -o dist/foo.js src/foo.js",
-    "test": "npm run test:node; npm run test:report;",
+    "test": "npm run test:node; npm run test:report",
     "test:browser": "cross-env NODE_ENV=test zuul --local 8081 --ui tape -- ./test/*.js",
     "test:electron": "cross-env NODE_ENV=test zuul --electron --ui tape -- ./test/*.js",
     "test:node": "cross-env NODE_ENV=test nyc -r html babel-node ./test/*.js | tap-diff",
