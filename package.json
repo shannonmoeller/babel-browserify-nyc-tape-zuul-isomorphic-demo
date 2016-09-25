@@ -28,11 +28,11 @@
   },
   "scripts": {
     "build": "browserify -o dist/foo.js src/foo.js",
-    "test": "npm run test:node; npm run test:report",
-    "test:browser": "cross-env NODE_ENV=test zuul --local 8081 --ui tape -- ./test/*.js",
-    "test:electron": "cross-env NODE_ENV=test zuul --electron --ui tape -- ./test/*.js",
-    "test:node": "cross-env NODE_ENV=test nyc -r html babel-node ./test/*.js | tap-diff",
-    "test:report": "cross-env NODE_ENV=test nyc report -r text"
+    "test": "npm run test-node; npm run test-report",
+    "test-browser": "cross-env NODE_ENV=test zuul --local 8081 --ui tape -- ./test/*.js",
+    "test-electron": "cross-env NODE_ENV=test zuul --electron --ui tape -- ./test/*.js",
+    "test-node": "cross-env NODE_ENV=test nyc -r html babel-node ./test/*.js | tap-diff",
+    "test-report": "cross-env NODE_ENV=test nyc report -r text"
   },
   "browserify": {
     "transform": [
