@@ -1,0 +1,62 @@
+{
+  "name": "babel-browserify-nyc-tape-zuul-isomorphic-demo",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-plugin-istanbul": "^2.0.1",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-stage-2": "^6.13.0",
+    "babel-runtime": "^6.11.6",
+    "babelify": "^7.3.0",
+    "blue-tape": "^1.0.0",
+    "browserify": "^13.1.0",
+    "cross-env": "^3.0.0",
+    "nyc": "^8.3.0",
+    "tap-diff": "^0.1.1",
+    "zuul": "^3.11.1"
+  },
+  "optionalDependencies": {
+    "electron": "^1.4.1"
+  },
+  "scripts": {
+    "build": "browserify -o dist/foo.js src/foo.js",
+    "test": "npm run test:node; npm run test:report;",
+    "test:browser": "cross-env NODE_ENV=test zuul --local 8081 --ui tape -- ./test/*.js",
+    "test:electron": "cross-env NODE_ENV=test zuul --electron --ui tape -- ./test/*.js",
+    "test:node": "cross-env NODE_ENV=test nyc -r html babel-node ./test/*.js | tap-diff",
+    "test:report": "cross-env NODE_ENV=test nyc report -r text"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-2"
+    ],
+    "plugins": [
+      "transform-runtime"
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          "istanbul"
+        ]
+      }
+    }
+  },
+  "nyc": {
+    "sourceMap": false,
+    "instrument": false
+  }
+}
