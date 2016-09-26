@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "A test stack with code coverage for isomorphic JavaScript development using babel, browserify, nyc, tape, and zuul.",
   "private": true,
-  "main": "index.js",
+  "main": "dist/foo.js",
+  "files": [
+    "dist"
+  ],
   "keywords": [],
-  "author": "",
+  "author": "Shannon Moeller",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
