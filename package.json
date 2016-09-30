@@ -17,6 +17,7 @@
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-stage-2": "^6.13.0",
+    "babel-register": "^6.16.3",
     "babel-runtime": "^6.11.6",
     "babelify": "^7.3.0",
     "blue-tape": "^1.0.0",
@@ -32,9 +33,9 @@
   "scripts": {
     "build": "browserify -o dist/foo.js src/foo.js",
     "test": "npm run test-node; npm run test-report",
-    "test-browser": "cross-env NODE_ENV=test zuul --local 8081 --ui tape -- ./test/*.js",
-    "test-electron": "cross-env NODE_ENV=test zuul --electron --ui tape -- ./test/*.js",
-    "test-node": "cross-env NODE_ENV=test nyc -r html babel-node ./test/*.js | tap-diff",
+    "test-browser": "cross-env NODE_ENV=test zuul --local 8081 --ui tape --no-coverage -- './test/**/*.js'",
+    "test-electron": "cross-env NODE_ENV=test zuul --electron --ui tape --no-coverage -- './test/**/*.js'",
+    "test-node": "cross-env NODE_ENV=test nyc -r html blue-tape './test/**/*.js' | tap-diff",
     "test-report": "cross-env NODE_ENV=test nyc report -r text"
   },
   "browserify": {
@@ -60,6 +61,9 @@
   },
   "nyc": {
     "sourceMap": false,
-    "instrument": false
+    "instrument": false,
+    "require": [
+      "babel-register"
+    ]
   }
 }
