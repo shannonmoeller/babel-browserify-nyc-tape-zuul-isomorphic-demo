@@ -1,8 +1,6 @@
 import test from 'blue-tape';
 import { bar } from '../src/bar';
 
-test('should sub', async (t) => {
-    const actual = await bar(3, 2);
-
-    t.is(actual, 1);
+test('should subtract', async (t) => {
+    t.is(await bar(3, 2), 1);
 });

@@ -23,16 +23,18 @@
     "blue-tape": "^1.0.0",
     "browserify": "^13.1.1",
     "cross-env": "^3.1.3",
+    "mkdirp": "^0.5.1",
     "nyc": "^10.0.0",
     "tap-diff": "^0.1.1",
+    "trash-cli": "^1.4.0",
     "zuul": "^3.11.1"
   },
   "optionalDependencies": {
     "electron": "^1.4.8"
   },
   "scripts": {
-    "build": "browserify -o dist/foo.js src/foo.js",
-    "test": "npm run test-node; npm run test-report",
+    "build": "trash dist && mkdirp dist && browserify -o dist/foo.js src/foo.js",
+    "test": "npm run test-node && npm run test-report",
     "test-browser": "cross-env NODE_ENV=test zuul --local 8081 --ui tape --no-instrument -- './test/**/*.js'",
     "test-electron": "cross-env NODE_ENV=test zuul --electron --ui tape --no-instrument -- './test/**/*.js'",
     "test-node": "cross-env NODE_ENV=test nyc -r html blue-tape './test/**/*.js' | tap-diff",
