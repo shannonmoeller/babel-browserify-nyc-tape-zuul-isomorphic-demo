@@ -1,7 +1,7 @@
 {
   "name": "babel-browserify-nyc-tape-zuul-isomorphic-demo",
-  "version": "1.0.0",
-  "description": "A test stack with code coverage for isomorphic JavaScript development using babel, browserify, nyc, tape, and zuul.",
+  "version": "2.0.0",
+  "description": "An isomorphic JavaScript development stack with tests and code coverage using babel, browserify, nyc, tape, and zuul.",
   "private": true,
   "keywords": [],
   "author": "Shannon Moeller <me@shannonmoeller.com> (http://shannonmoeller.com)",

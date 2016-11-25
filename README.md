@@ -1,6 +1,6 @@
 # babel-browserify-nyc-tape-zuul-isomorphic-demo
 
-A test stack with code coverage for isomorphic JavaScript development using babel, browserify, nyc, tape, and zuul.
+An isomorphic JavaScript development stack with tests and code coverage using babel, browserify, nyc, tape, and zuul.
 
 ```shell
 npm install
