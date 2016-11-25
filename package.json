@@ -3,20 +3,27 @@
   "version": "1.0.0",
   "description": "A test stack with code coverage for isomorphic JavaScript development using babel, browserify, nyc, tape, and zuul.",
   "private": true,
-  "main": "dist/foo.js",
+  "keywords": [],
+  "author": "Shannon Moeller <me@shannonmoeller.com> (http://shannonmoeller.com)",
+  "license": "ISC",
+  "scripts": {
+    "build": "mkdirp dist && browserify -o dist/index.js src/index.js",
+    "test": "npm run test-node && npm run test-report",
+    "test-browser": "cross-env NODE_ENV=test zuul --local 8081 --ui tape --no-instrument -- './test/**/*.js'",
+    "test-electron": "cross-env NODE_ENV=test zuul --electron --ui tape --no-instrument -- './test/**/*.js'",
+    "test-node": "cross-env NODE_ENV=test nyc -r html blue-tape './test/**/*.js' | tap-diff",
+    "test-report": "cross-env NODE_ENV=test nyc report -r text"
+  },
+  "main": "dist/index.js",
   "files": [
     "dist"
   ],
-  "keywords": [],
-  "author": "Shannon Moeller",
-  "license": "ISC",
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-plugin-istanbul": "^3.0.0",
     "babel-plugin-transform-runtime": "^6.15.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-stage-2": "^6.18.0",
+    "babel-preset-env": "0.0.9",
     "babel-register": "^6.18.0",
     "babel-runtime": "^6.18.0",
     "babelify": "^7.3.0",
@@ -26,24 +33,25 @@
     "mkdirp": "^0.5.1",
     "nyc": "^10.0.0",
     "tap-diff": "^0.1.1",
-    "trash-cli": "^1.4.0",
-    "zuul": "^3.11.1"
+    "zuul": "github:defunctzombie/zuul#54c7556"
   },
   "optionalDependencies": {
     "electron": "^1.4.8"
   },
-  "scripts": {
-    "build": "trash dist && mkdirp dist && browserify -o dist/foo.js src/foo.js",
-    "test": "npm run test-node && npm run test-report",
-    "test-browser": "cross-env NODE_ENV=test zuul --local 8081 --ui tape --no-instrument -- './test/**/*.js'",
-    "test-electron": "cross-env NODE_ENV=test zuul --electron --ui tape --no-instrument -- './test/**/*.js'",
-    "test-node": "cross-env NODE_ENV=test nyc -r html blue-tape './test/**/*.js' | tap-diff",
-    "test-report": "cross-env NODE_ENV=test nyc report -r text"
-  },
   "babel": {
     "presets": [
-      "es2015",
-      "stage-2"
+      [
+        "env",
+        {
+          "targets": {
+            "browsers": [
+              "last 2 versions",
+              "> 1%"
+            ],
+            "node": 4
+          }
+        }
+      ]
     ],
     "plugins": [
       "transform-runtime"
