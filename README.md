@@ -4,6 +4,6 @@ An isomorphic JavaScript development stack with tests and code coverage using ba
 
 ```shell
 npm install
-npm run test-node
-npm run test-browser
+npm run test
+npm run test-client
 ```
