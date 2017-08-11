@@ -1,4 +1,4 @@
-import { baz } from '../../shared/baz/baz';
+import { baz, bat } from '../../shared/baz/baz';
 
 export async function foo(a, b) {
     const localA = await a;
