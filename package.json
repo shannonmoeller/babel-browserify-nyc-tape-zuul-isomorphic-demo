@@ -5,7 +5,7 @@
   "private": true,
   "keywords": [],
   "author": "Shannon Moeller <me@shannonmoeller.com> (http://shannonmoeller.com)",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "build": "npm run build-client && npm run build-server && npm run build-shared",
     "build-client": "rimraf dist/client && mkdirp dist/client && browserify -o dist/client/index.js src/client/index.js",
